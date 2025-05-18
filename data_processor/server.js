@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001; // Render asignará process.env.PORT
 
 // Middleware para parsear JSON
 app.use(bodyParser.json());
@@ -200,7 +200,7 @@ app.get('/api/alldata', (req, res) => {
     });
 });
 
-app.listen(port, '0.0.0.0', () => { // Asegúrate de escuchar en 0.0.0.0
+app.listen(port, '0.0.0.0', () => { // Escuchar en 0.0.0.0
     console.log(`Data Processor Service listening at http://0.0.0.0:${port}`);
     console.log(`Access the dashboard at http://localhost:${port}/dashboard`); // Este localhost será relativo al entorno de Render
 });

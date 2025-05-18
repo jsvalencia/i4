@@ -1,0 +1,28 @@
+services:
+  - type: web # Data Processor Service
+    name: data-processor
+    env: docker
+    repo: <tu-url-de-repo-git> # ej: https://github.com/tu_usuario/tu_repo.git
+    rootDir: ./data_processor
+    dockerfilePath: ./data_processor/Dockerfile # Ruta relativa al rootDir si es necesario, o al repo root
+    plan: free # o el plan que elijas
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # PORT es asignado automáticamente por Render y usado por server.js
+      # El puerto interno que expone tu app es 3001 (desde Dockerfile y server.js)
+
+  - type: web # Sensor Collector Service
+    name: sensor-collector
+    env: docker
+    repo: <tu-url-de-repo-git> # ej: https://github.com/tu_usuario/tu_repo.git
+    rootDir: ./sensor_collector
+    dockerfilePath: ./sensor_collector/Dockerfile
+    plan: free
+    envVars:
+      - key: DATA_PROCESSOR_URL
+        # Render reemplazará 'data-processor' con el host interno correcto
+        # y 3001 es el puerto en el que escucha data-processor
+        value: http://data-processor:3001/api/data
+      # PORT es asignado automáticamente por Render y usado por app.py
+      # El puerto interno que expone tu app es 5001 (desde Dockerfile y app.py)

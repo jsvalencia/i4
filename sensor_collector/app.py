@@ -63,5 +63,5 @@ if __name__ == '__main__':
     import logging
     logging.basicConfig(level=logging.INFO)
     # Usar el puerto asignado por Render, o 5001 por defecto para local
-    port = int(os.environ.get('PORT', 5001))
-    app.run(host='0.0.0.0', port=port, debug=False) # debug=False para producción, True para desarrollo
+    port = int(os.environ.get('PORT', 5001)) # Render asignará PORT
+    app.run(host='0.0.0.0', port=port, debug=False)
