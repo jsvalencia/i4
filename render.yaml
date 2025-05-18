@@ -21,9 +21,8 @@ services:
     plan: free
     envVars:
       - key: DATA_PROCESSOR_URL
-        # Render reemplazará 'data-processor' con el host interno correcto del servicio data-processor.
-        # El puerto :3001 es el puerto INTERNO en el que escucha el servicio data-processor.
-        value: http://data-processor:3001/api/data
+        # Actualiza esta URL para usar la URL pública de Render del data-processor
+        value: https://data-processor-v27b.onrender.com/api/data
       # PORT es asignado automáticamente por Render. Tu app.py ya lo usa.
       # El puerto interno que tu app Python escucha es 5001 (definido en app.py y expuesto en su Dockerfile).
       # Render mapeará su PORT externo a este puerto interno 5001.
