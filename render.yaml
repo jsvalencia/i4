@@ -2,7 +2,7 @@ services:
   - type: web # Servicio del Procesador de Datos
     name: data-processor
     env: docker
-    repo: https://github.com/jsvalencia/comunicacion.git # ¡REEMPLAZA ESTO CON TU URL REAL!
+    repo: https://github.com/jsvalencia/i4 # ¡REEMPLAZA ESTO CON TU URL REAL!
     rootDir: ./data_processor
     dockerfilePath: ./Dockerfile
     plan: free # O el plan que elijas (el gratuito es bueno para empezar)
@@ -15,7 +15,7 @@ services:
   - type: web # Servicio del Recolector de Sensores
     name: sensor-collector
     env: docker
-    repo: https://github.com/jsvalencia/comunicacion.git # ¡REEMPLAZA ESTO CON TU URL REAL!
+    repo: https://github.com/jsvalencia/i4 # ¡REEMPLAZA ESTO CON TU URL REAL!
     rootDir: ./sensor_collector
     dockerfilePath: ./Dockerfile
     plan: free
