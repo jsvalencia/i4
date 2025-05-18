@@ -1,0 +1,28 @@
+services:
+  sensor_collector:
+    build:
+      context: ./sensor_collector
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001" # Puerto expuesto para el recolector de sensores
+    networks:
+      - app_network
+    container_name: sensor_collector_app
+
+  data_processor:
+    build:
+      context: ./data_processor
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001" # Puerto expuesto para el procesador de datos
+    depends_on:
+      - sensor_collector
+    networks:
+      - app_network
+    container_name: data_processor_app
+    environment:
+      - NODE_ENV=development
+
+networks:
+  app_network:
+    driver: bridge
