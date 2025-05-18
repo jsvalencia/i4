@@ -1,28 +1,29 @@
 services:
-  - type: web # Data Processor Service
-    name: data-processor
-    env: docker
-    repo: <tu-url-de-repo-git> # ej: https://github.com/tu_usuario/tu_repo.git
-    rootDir: ./data_processor
-    dockerfilePath: ./data_processor/Dockerfile # Ruta relativa al rootDir si es necesario, o al repo root
-    plan: free # o el plan que elijas
+  - type: web # Servicio del Procesador de Datos
+    name: data-processor # Nombre del servicio en Render (usado para URL interna)
+    env: docker # Indica a Render que use Docker para construir
+    repo: <tu-url-de-repo-git> # ¡REEMPLAZA ESTO! ej: https://github.com/tu_usuario/comunicacion.git
+    rootDir: ./data_processor # Directorio raíz para este servicio dentro de tu repo
+    dockerfilePath: ./Dockerfile # Ruta al Dockerfile, relativa al rootDir
+    plan: free # O el plan que elijas (el gratuito es bueno para empezar)
     envVars:
       - key: NODE_ENV
         value: production
-      # PORT es asignado automáticamente por Render y usado por server.js
-      # El puerto interno que expone tu app es 3001 (desde Dockerfile y server.js)
-
-  - type: web # Sensor Collector Service
-    name: sensor-collector
+      # PORT es asignado automáticamente por Render. Tu server.js ya lo usa.
+      # El puerto interno que tu app Node.js escucha es 3001 (definido en server.js y expuesto en su Dockerfile).
+      # Render mapeará su PORT externo a este puerto interno 3001.
+  - type: web # Servicio del Recolector de Sensores
+    name: sensor-collector # Nombre del servicio en Render
     env: docker
-    repo: <tu-url-de-repo-git> # ej: https://github.com/tu_usuario/tu_repo.git
-    rootDir: ./sensor_collector
-    dockerfilePath: ./sensor_collector/Dockerfile
+    repo: <tu-url-de-repo-git> # ¡REEMPLAZA ESTO! La misma URL de repo que arriba.
+    rootDir: ./sensor_collector # Directorio raíz para este servicio
+    dockerfilePath: ./Dockerfile # Ruta al Dockerfile, relativa al rootDir
     plan: free
     envVars:
       - key: DATA_PROCESSOR_URL
-        # Render reemplazará 'data-processor' con el host interno correcto
-        # y 3001 es el puerto en el que escucha data-processor
+        # Render reemplazará 'data-processor' con el host interno correcto del servicio data-processor.
+        # El puerto :3001 es el puerto INTERNO en el que escucha el servicio data-processor.
         value: http://data-processor:3001/api/data
-      # PORT es asignado automáticamente por Render y usado por app.py
-      # El puerto interno que expone tu app es 5001 (desde Dockerfile y app.py)
+      # PORT es asignado automáticamente por Render. Tu app.py ya lo usa.
+      # El puerto interno que tu app Python escucha es 5001 (definido en app.py y expuesto en su Dockerfile).
+      # Render mapeará su PORT externo a este puerto interno 5001.
