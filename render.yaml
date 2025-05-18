@@ -1,10 +1,10 @@
 services:
   - type: web # Servicio del Procesador de Datos
-    name: data-processor # Nombre del servicio en Render (usado para URL interna)
-    env: docker # Indica a Render que use Docker para construir
-    repo: <tu-url-de-repo-git> # ¡REEMPLAZA ESTO! ej: https://github.com/tu_usuario/comunicacion.git
-    rootDir: ./data_processor # Directorio raíz para este servicio dentro de tu repo
-    dockerfilePath: ./Dockerfile # Ruta al Dockerfile, relativa al rootDir
+    name: data-processor
+    env: docker
+    repo: <tu-url-de-repo-git> # ¡DEBES REEMPLAZAR ESTO!
+    rootDir: ./data_processor
+    dockerfilePath: ./Dockerfile
     plan: free # O el plan que elijas (el gratuito es bueno para empezar)
     envVars:
       - key: NODE_ENV
@@ -13,11 +13,11 @@ services:
       # El puerto interno que tu app Node.js escucha es 3001 (definido en server.js y expuesto en su Dockerfile).
       # Render mapeará su PORT externo a este puerto interno 3001.
   - type: web # Servicio del Recolector de Sensores
-    name: sensor-collector # Nombre del servicio en Render
+    name: sensor-collector
     env: docker
-    repo: <tu-url-de-repo-git> # ¡REEMPLAZA ESTO! La misma URL de repo que arriba.
-    rootDir: ./sensor_collector # Directorio raíz para este servicio
-    dockerfilePath: ./Dockerfile # Ruta al Dockerfile, relativa al rootDir
+    repo: <tu-url-de-repo-git> # ¡DEBES REEMPLAZAR ESTO!
+    rootDir: ./sensor_collector
+    dockerfilePath: ./Dockerfile
     plan: free
     envVars:
       - key: DATA_PROCESSOR_URL
