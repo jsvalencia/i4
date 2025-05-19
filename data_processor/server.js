@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
             </head>
             <body>
                 <div class="container">
-                    <h1>Bienvenido al Servicio de Procesamiento de Datos - Demo Industria 4.0</h1>
+                    <h1>Bienvenido al Servicio de Procesamiento de Datos Industria 4.0</h1>
                     <p>Este servicio recibe, procesa y resume datos de sensores simulados, demostrando un flujo de datos básico en un contexto de Industria 4.0.</p>
                     <p><strong>Endpoints disponibles:</strong></p>
                     <ul>
@@ -184,7 +184,7 @@ app.get('/dashboard', (req, res) => {
                     <ul class="sensor-activity">
                         ${sensorActivityHtml}
                     </ul>
-                    <p class="footer">Esta página se actualiza automáticamente cada 5 segundos.</p>
+                    <p class="footer">Esta página se actualiza automáticamente cada 5 segundos.<br>unicomfacauca, materia Arquitectura de software</p>
                 </div>
             </body>
         </html>
