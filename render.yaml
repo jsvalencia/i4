@@ -2,27 +2,22 @@ services:
   - type: web # Servicio del Procesador de Datos
     name: data-processor
     env: docker
-    repo: https://github.com/jsvalencia/i4 # ¡REEMPLAZA ESTO CON TU URL REAL!
+    repo: https://github.com/jsvalencia/i4 # <-- REPLACE THIS
     rootDir: ./data_processor
     dockerfilePath: ./Dockerfile
-    plan: free # O el plan que elijas (el gratuito es bueno para empezar)
+    plan: free
     envVars:
       - key: NODE_ENV
         value: production
-      # PORT es asignado automáticamente por Render. Tu server.js ya lo usa.
-      # El puerto interno que tu app Node.js escucha es 3001 (definido en server.js y expuesto en su Dockerfile).
-      # Render mapeará su PORT externo a este puerto interno 3001.
+      # PORT is automatically assigned by Render.
   - type: web # Servicio del Recolector de Sensores
     name: sensor-collector
     env: docker
-    repo: https://github.com/jsvalencia/i4 # ¡REEMPLAZA ESTO CON TU URL REAL!
+    repo: https://github.com/jsvalencia/i4 # <-- REPLACE THIS
     rootDir: ./sensor_collector
     dockerfilePath: ./Dockerfile
     plan: free
     envVars:
       - key: DATA_PROCESSOR_URL
-        # Actualiza esta URL para usar la URL pública de Render del data-processor
-        value: https://data-processor-v27b.onrender.com/api/data
-      # PORT es asignado automáticamente por Render. Tu app.py ya lo usa.
-      # El puerto interno que tu app Python escucha es 5001 (definido en app.py y expuesto en su Dockerfile).
-      # Render mapeará su PORT externo a este puerto interno 5001.
+        value: https://data-processor-v27b.onrender.com/api/data # Or your internal service address if preferred
+      # PORT is automatically assigned by Render.
