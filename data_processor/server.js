@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // 1. Importa el paquete cors
 
 const app = express();
 const port = process.env.PORT || 3001; // Render asignará process.env.PORT
 
-// Middleware para parsear JSON
+// Middleware
+app.use(cors()); // 2. Usa el middleware cors. Esto permitirá todas las solicitudes de origen cruzado.
 app.use(bodyParser.json());
 
 // Almacenamiento en memoria para los datos (para simplificar)
